@@ -21,13 +21,11 @@ const grantToken = async (req, res) => {
         },
       }
     );
-    // console.log(response.data.id_token);
+    console.log(response.data.id_token);
     return response.data.id_token;
   } catch (err) {
     console.log(err);
   }
-
-  // return response.data.id_token;
 };
 
 module.exports = grantToken;

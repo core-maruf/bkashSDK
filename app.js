@@ -1,8 +1,9 @@
-const { response } = require("express");
 const express = require("express");
 const createAgreement = require("./agreement/createAgreement");
+const redirectBkash = require("./agreement/redirect");
 const executeAgreement = require("./agreement/executeAgreement");
-// const grantToken = require("./token/grantToken");
+// const createPayment = require("./payment/createPayment");
+// const { redirectBkash, executePayment } = require("./payment/executePayment");
 
 const app = express();
 const router = express.Router();
@@ -10,26 +11,19 @@ app.use(router);
 
 // app.use(express.json());
 
-// (async () => {
-//   const getToken = await grantToken();
-//   console.log(getToken);
-// })();
-
-// executeAgreement();
-
-// app.use(executeAgreement(), (req, res, next) => {
-//   if (response.status.message == "Successful") {
-//     res.redirect =
-//       "https://sandbox.payment.bkash.com/redirect/tokenized/?paymentID=TR0000WK1665036733218&hash=.rm!SwK6uRC6(Dd!Y2fuuxmgAcv3uiJkJkSCDYZ2C)bjnGs8Gr9v(YsQX_fmpP*E8eVC6gJ-auF35iK6M3BfAHdLd92tDTwhWJ*Z1665036733477&mode=0000&apiVersion=v1.2.0-beta";
-//     next();
-//   }
+// router.get("/", async () => {
+//   executeAgreement(req, res);
+//   res.redirect("https://www.google.com/");
+//   res.send("Hello World...");
 // });
 
-router.get("/", async (req, res) => {
-  executeAgreement(req, res);
-});
+router.get("/redirect", redirectBkash);
+// router.get("/execute", executeAgreement);
+
+setTimeout(() => {
+  router.get("/execute", executeAgreement);
+}, 20000);
 
 app.listen(3000, () => {
   console.log("Listening on port 3000..");
-  // createAgreement();
 });
