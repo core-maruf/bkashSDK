@@ -2,7 +2,6 @@ const axios = require("axios");
 // const refreshToken = require("../token/refreshToken");
 const grantToken = require("../token/grantToken");
 const dotenv = require("dotenv");
-const { request, response } = require("express");
 dotenv.config();
 
 // const getToken = async () => {
@@ -16,7 +15,7 @@ const createAgreement = async (req, res) => {
     // '\n{\n     "mode": "0000",\n     "callbackURL": "http://localhost:3030/",\n     "payerReference": "01611156651"\n}\n',
     {
       mode: "0000",
-      callbackURL: "http://localhost:3000/execute",
+      callbackURL: "http://localhost:3030/",
       payerReference: "01611156651",
     },
     {
